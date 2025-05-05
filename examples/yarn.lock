@@ -9,6 +9,11 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@godaddy/dmd@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@godaddy/dmd/-/dmd-1.0.4.tgz#86a22e88704592f94fc17678b460dfe3fa1a608f"
+  integrity sha512-f/Usjur8YE3gyko+fbBkFjQ5Q7j/uftPBuqHZPOGhT3pePe9X78HQixIKqvIM+C/Bwv70A+j3aV5t0N5yDkoTA==
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz#7a0ee601f60f99a20c7c7c5ff0c80388c1189bd6"
@@ -114,6 +119,11 @@ diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
+
+dmd-bitbucket@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/dmd-bitbucket/-/dmd-bitbucket-0.1.11.tgz#5c4d68d7671bf0da70fbccfa3336754ae37f3edf"
+  integrity sha512-P5msHEcIC9Y2sXcDtY60dAuDhga4KmMtK7KPK3cglTLYxOQDSn1qJjERmgWpzlIeJcBtpDY1qG1pF+XACb1e0g==
 
 dunder-proto@^1.0.1:
   version "1.0.1"
@@ -246,12 +256,14 @@ proxy-from-env@^1.1.0:
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
-rocketdata@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/rocketdata/-/rocketdata-2.0.2.tgz#113e76100d58bb12a6def83d25e855dd93d86498"
-  integrity sha512-nzoASqt+v8FbGR19N2R/1Gcm97+GpMooOESn187xyA2tlhFG4xJx22yrjcU/pYwbkwy5Pd4DjF7DXuxz7pGPjg==
+rocketdata@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/rocketdata/-/rocketdata-2.1.2.tgz#1e40428210bece13644bb98f33a6a3056760338c"
+  integrity sha512-5fsg3Xyv6KLUSJ2hNJJuu1kGQnujZhHm+eleSy1vPJjwwR5d71TbH96zPmHkjxho7gACnIRyQQjMDfCgAKiDMw==
   dependencies:
+    "@godaddy/dmd" "^1.0.4"
     axios "^1.9.0"
+    dmd-bitbucket "^0.1.11"
     ts-node "^10.9.2"
 
 ts-node@^10.9.2:

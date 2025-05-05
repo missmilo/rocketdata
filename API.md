@@ -11,7 +11,7 @@ Name | Description
 ------ | -----------
 [ApodResponse] | <p>ApodResponse is the response from the NASA API.</p>
 [ApodRequestParams] | <p>ApodRequestParams is the request parameters for the NASA API.</p>
-[RoverQueryParams] | <p>RoverQueryParams is the request parameters for the NASA API.</p>
+[RoverQueryParams] | <p>RoverQueryParams is the request parameters for querying by Martian sol.</p>
 
 
 ## ApodResponse
@@ -51,15 +51,15 @@ Name | Description
 
 ## RoverQueryParams
 
-<p>RoverQueryParams is the request parameters for the NASA API.</p>
+<p>RoverQueryParams is the request parameters for querying by Martian sol.</p>
 
 **Kind**: global interface  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| sol | `number` | <p>The sol of the APOD.</p> |
-| camera | `string` | <p>The camera of the APOD.</p> |
+| sol | `number` | <p>The mars day.</p> |
+| camera | `string` | <p>The camera of the rover.</p> |
 | page | `number` | <p>The page of the APOD.</p> |
 | api_key | `string` | <p>The API key.</p> |
 
@@ -69,15 +69,18 @@ Name | Description
 <p>getAstronomyPictureOfTheDay is a function that returns the Astronomy Picture of the Day from NASA's API.</p>
 
 **Kind**: global function  
-**Returns**: <p>ApodResponse | ApodResponse[]</p>  
+**Returns**: [`ApodResponse`] - <p>Returns the Astronomy Picture of the Day.</p>  
+**Version**: 2.0.2  
 
-| Param | Description |
-| --- | --- |
-| params | <p>ApodRequestParams</p> |
+| Param | Type | Description |
+| --- | --- | --- |
+| params | [`ApodRequestParams`] | <p>The request parameters.</p> |
 
 <!-- LINKS -->
 
 [ApodResponse]:#apodresponse
 [ApodRequestParams]:#apodrequestparams
 [RoverQueryParams]:#roverqueryparams
+[`ApodResponse`]:#apodresponse
+[`ApodRequestParams`]:#apodrequestparams
 [getAstronomyPictureOfTheDay(params)]:#getastronomypictureofthedayparams
