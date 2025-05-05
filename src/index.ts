@@ -281,7 +281,7 @@ export const getMarsRoverPhotosByEarthDate = async (params: EarthDateQueryParams
  * @function getMissionManifest
  * @description A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. 
  * @async
- * @version 2.3.2 
+ * @version 2.3.3 
  * @param {Rover} rover - The name of the rover. Curiosity, Opportunity or Spirit.
  * @returns {Promise<RoverManifest>}
  * @fulfill {RoverManifest} - The rover manifest.
