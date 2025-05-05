@@ -2,7 +2,8 @@
 import { 
     getAstronomyPictureOfTheDay, 
     getMarsRoverPhotosByMartianSol, 
-    getMarsRoverPhotosByEarthDate
+    getMarsRoverPhotosByEarthDate,
+    getRoverMissionManifest
 } from 'rocketdata';
 (async () => {
   try {
@@ -23,6 +24,8 @@ import {
       api_key: 'DEMO_KEY',
     })
     console.log('Integration test result:', roverData2);
+    const roverManifest = await getRoverMissionManifest('curiosity', 'DEMO_KEY');
+    console.log('Integration test result:', roverManifest);
 
   } catch (error) {
     console.error('Failed to fetch APOD:', error);
