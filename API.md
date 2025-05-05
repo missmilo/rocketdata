@@ -78,7 +78,7 @@
 <a name="RoverQueryParams"></a>
 
 ## RoverQueryParams
-**Version**: 2.0.2  
+**Version**: 2.1.2  
 **Properties**
 
 | Name | Type | Description |
@@ -93,6 +93,7 @@
 <a name="RoverInfo"></a>
 
 ## RoverInfo
+**Version**: 2.1.2  
 **Properties**
 
 | Name | Type | Description |
@@ -108,6 +109,7 @@
 <a name="MarsPhoto"></a>
 
 ## MarsPhoto
+**Version**: 2.1.2  
 **Properties**
 
 | Name | Type | Description |
@@ -124,6 +126,7 @@
 <a name="MarsPhotoResponse"></a>
 
 ## MarsPhotoResponse
+**Version**: 2.1.2  
 **Properties**
 
 | Name | Type | Description |
