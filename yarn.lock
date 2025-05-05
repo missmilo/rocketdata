@@ -1881,6 +1881,11 @@ dmd-bitbucket@^0.1.11:
   resolved "https://registry.yarnpkg.com/dmd-bitbucket/-/dmd-bitbucket-0.1.11.tgz#5c4d68d7671bf0da70fbccfa3336754ae37f3edf"
   integrity sha512-P5msHEcIC9Y2sXcDtY60dAuDhga4KmMtK7KPK3cglTLYxOQDSn1qJjERmgWpzlIeJcBtpDY1qG1pF+XACb1e0g==
 
+dmd-clear@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/dmd-clear/-/dmd-clear-0.1.2.tgz#f061c5b072b26ba23164dd5a8c0bc8668833be12"
+  integrity sha512-sALxfbQ9r8pT8rbWe5NFEGtb4oKeWVnu39YxCdB1b/HcDSLmbPxmYGXRU6EkgixCcIGodMcox0pq86+xYlT/6A==
+
 dmd@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/dmd/-/dmd-7.1.1.tgz#acf791a47aec88c0a80873695bb2c1cc67a04ffe"

@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+
 /**
  * @interface ApodResponse
- * @description ApodResponse is the response from the NASA API.
+ * @description The response object from the NASA API.
  * @property {string} date - The date of the APOD.
  * @property {string} explanation - The explanation of the APOD.
  * @property {string} hdurl - The HD URL of the APOD.
@@ -23,7 +24,7 @@ export type ApodResponse = {
 
 /**
  * @interface ApodRequestParams
- * @description ApodRequestParams is the request parameters for the NASA API.
+ * @description The request parameters for getAstronomyPictureOfTheDay.
  * @property {string} date - The date of the APOD.
  * @property {string} start_date - The start date of the APOD.
  * @property {string} end_date - The end date of the APOD.
@@ -96,6 +97,16 @@ export interface RoverInfo {
   status: 'active' | 'complete';
 }
 
+/**
+ * @interface MarsPhoto
+ * @description MarsPhoto is the format for a Mars rover photo.
+ * @property {number} id - The id of the Mars rover photo.
+ * @property {number} sol - The mars day.
+ * @property {CameraInfo} camera - The camera of the rover.
+ * @property {string} img_src - The image source of the Mars rover photo.
+ * @property {string} earth_date - The earth date of the Mars rover photo.
+ * @property {RoverInfo} rover - The rover of the Mars rover photo.
+ */
 export interface MarsPhoto {
   id: number;
   sol: number;
@@ -105,6 +116,11 @@ export interface MarsPhoto {
   rover: RoverInfo;
 }
 
+/**
+ * @interface MarsPhotoResponse
+ * @description MarsPhotoResponse is the response object for querying by Martian sol.
+ * @property {Array<MarsPhoto>} photos - The list of Mars rover photos.
+ */
 export interface MarsPhotoResponse {
   photos: MarsPhoto[];
 }
@@ -142,9 +158,22 @@ export const getAstronomyPictureOfTheDay = async (
   return response.data;
 };
 
+
+/**
+ * @function getMarsRoverPhotosByMartianSol
+ * @async
+ * @version 2.1.2
+ * @param {RoverQueryParams} params - The request parameters.
+ * @returns {Promise}
+ * @fulfill {MarsPhotoResponse} - The Mars rover photos.
+ * @reject {Error} - The error object.
+ */
 export const getMarsRoverPhotosByMartianSol = async (params: RoverQueryParams): Promise<MarsPhotoResponse> => {
   const query = buildQueryParams(params);
   const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/curiosity/photos?${query}`);
   return response.data;
 }
 
+export const getMarsRoverPhotosByEarthDate = async () => {
+
+}

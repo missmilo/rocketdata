@@ -13,12 +13,13 @@
     "@godaddy/dmd": "^1.0.4",
     "axios": "^1.9.0",
     "dmd-bitbucket": "^0.1.11",
+    "dmd-clear": "^0.1.2",
     "ts-node": "^10.9.2"
   },
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "build:doc": "jsdoc2md --plugin @godaddy/dmd --files ./src/*.ts --configure ./jsdoc2md.json > ./API.md"
+    "build:doc": "jsdoc2md --plugin dmd-clear --files ./src/*.ts --configure ./jsdoc2md.json > ./API.md"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.1",
