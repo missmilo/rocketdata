@@ -6,6 +6,7 @@ export {
 export { 
   getMarsRoverPhotosByEarthDate, 
   getMarsRoverPhotosByMartianSol,
+  getRoverMissionManifest,
   Rover,
   CameraInfo,
   EarthDateQueryParams,

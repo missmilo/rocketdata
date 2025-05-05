@@ -5,7 +5,7 @@
   "author": "Maddie",
   "license": "MIT",
   "dependencies": {
-    "rocketdata": "^2.2.2"
+    "rocketdata": "^2.3.4"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",

@@ -161,7 +161,7 @@
 <a name="RoverManifest"></a>
 
 ## RoverManifest
-**Version**: 2.3.2  
+**Version**: 2.3.5  
 **Properties**
 
 | Name | Type | Description |
@@ -232,7 +232,7 @@ const result = await getMarsRoverPhotosByEarthDate({  earth_date: '2023-06-25',
 ## getMissionManifest(rover)
 **Fulfill**: [<code>RoverManifest</code>](#RoverManifest) - The rover manifest.  
 **Reject**: <code>Error</code> - The error object.  
-**Version**: 2.3.3  
+**Version**: 2.3.5  
 
 | Param | Type | Description |
 | --- | --- | --- |

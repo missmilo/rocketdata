@@ -261,10 +261,10 @@ proxy-from-env@^1.1.0:
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
-rocketdata@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/rocketdata/-/rocketdata-2.2.2.tgz#5b2f83ee6f1bf8760127debd8bf1e3aafcb0b5b8"
-  integrity sha512-jHZk76qOFxM8xZ8i4/OARu/aHPJqQ7fmOCINd0IPBy2LKOww6Uds9K8MJL+iW7lleplkA8/iS1bN4dixPIGjLw==
+rocketdata@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/rocketdata/-/rocketdata-2.3.4.tgz#17146588747faabcbea5dac6b29d15efdaf67f4c"
+  integrity sha512-325WUilVfcoiVonH4TN46VPNfwbcIqntiCl2JBrPtVFeA8YdS+u246cAhDWzMRWF1XeQ6VDm6xPg6wNCiY4nIg==
   dependencies:
     "@godaddy/dmd" "^1.0.4"
     axios "^1.9.0"

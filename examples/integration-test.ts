@@ -1,5 +1,9 @@
 // examples/integration-test.ts
-import { getAstronomyPictureOfTheDay, getMarsRoverPhotosByMartianSol, getMarsRoverPhotosByEarthDate } from 'rocketdata';
+import { 
+    getAstronomyPictureOfTheDay, 
+    getMarsRoverPhotosByMartianSol, 
+    getMarsRoverPhotosByEarthDate
+} from 'rocketdata';
 (async () => {
   try {
     const data = await getAstronomyPictureOfTheDay({
@@ -13,6 +17,13 @@ import { getAstronomyPictureOfTheDay, getMarsRoverPhotosByMartianSol, getMarsRov
       api_key: 'DEMO_KEY',
     })
     console.log('Integration test result:', roverData);
+    const roverData2 = await getMarsRoverPhotosByEarthDate({
+      camera: 'FHAZ',
+      earth_date: '2015-6-3',
+      api_key: 'DEMO_KEY',
+    })
+    console.log('Integration test result:', roverData2);
+
   } catch (error) {
     console.error('Failed to fetch APOD:', error);
   }

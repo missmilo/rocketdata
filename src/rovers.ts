@@ -122,7 +122,7 @@ export interface MarsPhotoResponse {
 /**
  * @interface RoverManifest
  * @description The rover manifest object type returned from getMissionManifest.
- * @version 2.3.2
+ * @version 2.3.5
  * @property {string} name - The name of the rover. 
  * @property {string} landing_date - The landing date of the rover.
  * @property {string} launch_date - The launch date of the rover.
@@ -193,7 +193,7 @@ export const getMarsRoverPhotosByEarthDate = async (params: EarthDateQueryParams
  * @function getMissionManifest
  * @description A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. 
  * @async
- * @version 2.3.3 
+ * @version 2.3.5 
  * @param {Rover} rover - The name of the rover. Curiosity, Opportunity or Spirit.
  * @returns {Promise<RoverManifest>}
  * @fulfill {RoverManifest} - The rover manifest.
