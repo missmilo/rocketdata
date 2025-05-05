@@ -1,5 +1,5 @@
 // examples/integration-test.ts
-import { getAstronomyPictureOfTheDay, getMarsRoverPhotosByMartianSol } from 'rocketdata';
+import { getAstronomyPictureOfTheDay, getMarsRoverPhotosByMartianSol, getMarsRoverPhotosByEarthDate } from 'rocketdata';
 (async () => {
   try {
     const data = await getAstronomyPictureOfTheDay({

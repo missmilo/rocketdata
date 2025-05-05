@@ -27,11 +27,11 @@ export type ApodResponse = {
  * @interface ApodRequestParams
  * @version 2.0.2
  * @description The request parameters for getAstronomyPictureOfTheDay.
- * @property {string} [date] - Optional date of the APOD.
- * @property {string} [start_date] - Optional start date of the APOD.
- * @property {string} [end_date] - Optional end date of the APOD.
- * @property {number} [count] - Optional number of APODs to return.
- * @property {boolean} [thumbs] - Optional whether to return thumbnails.
+ * @property {string} [date] - Optional, date of the APOD.
+ * @property {string} [start_date] - Optional, start date of the APOD.
+ * @property {string} [end_date] - Optional, end date of the APOD.
+ * @property {number} [count] - Optional, number of APODs to return.
+ * @property {boolean} [thumbs] - Optional, whether to return thumbnails.
  * @property {string} api_key - The API key.
  */
 export type ApodRequestParams = {
@@ -69,7 +69,6 @@ export type CameraAbbreviation =
   | 'NAVCAM'
   | 'PANCAM'
   | 'MINITES';
-
 export type Rover = 'Curiosity' | 'Opportunity' | 'Spirit';
 
 
@@ -85,21 +84,35 @@ export const CAMERAS: CameraInfo[] = [
   { abbreviation: 'MINITES', fullName: 'Miniature Thermal Emission Spectrometer (Mini-TES)', supportedRovers: ['Opportunity', 'Spirit'] },
 ];
 
-/**
- * @interface RoverQueryParams
- * @version 2.1.2
- * @description RoverQueryParams is the request parameters for querying by Martian sol.
- * @property {number} sol - The mars day.
- * @property {string} [camera] - The camera of the rover. Optional, defaults to all.
- * @property {number} [page] - The page of the APOD. Optional, defaults to 1.
- * @property {string} api_key - The API key.
- */
-export interface RoverQueryParams {
-  sol: number;
+interface RoverQueryParams {
+  sol?: number;
+  earth_date?: string; // YYYY-MM-DD
   camera?: CameraAbbreviation; 
   page?: number; 
   api_key: string; 
 }
+
+/**
+ * @interface SolQueryParams
+ * @version 2.2.2
+ * @description Parameters to fetch Mars rover photos by sol (Martian day).
+ * @property {number} sol - The Martian sol (e.g., 1000).
+ * @property {CameraAbbreviation} [camera] - Abbreviation of the camera.
+ * @property {number} [page] - Optional, defaults to 1. 25 items per page returned.
+ * @property {string} api_key - NASA API key.
+ */
+export type SolQueryParams = Pick<RoverQueryParams, 'sol' | 'camera' | 'page' | 'api_key'>;
+
+/**
+ * @interface EarthDateQueryParams
+ * @version 2.2.2
+ * @description Parameters to fetch Mars rover photos by earth date.
+ * @property {string} earth_date - The earth date of the rover (e.g., '2023-06-25').
+ * @property {CameraAbbreviation} [camera] - Abbreviation of the camera.
+ * @property {number} [page] -Optional, defaults to 1. 25 items per page returned.
+ * @property {string} api_key - NASA API key.
+ */
+export type EarthDateQueryParams = Pick<RoverQueryParams, 'earth_date' | 'camera' | 'page' | 'api_key'>;
 
 /**
  * @interface RoverInfo
@@ -114,7 +127,7 @@ export interface RoverQueryParams {
 export interface RoverInfo {
   id: number;
   name: 'Curiosity' | 'Opportunity' | 'Spirit';
-  landing_date: string; // ISO date string
+  landing_date: string; 
   launch_date: string;
   status: 'active' | 'complete';
 }
@@ -189,17 +202,28 @@ export const getAstronomyPictureOfTheDay = async (
  * @function getMarsRoverPhotosByMartianSol
  * @async
  * @version 2.1.2
- * @param {RoverQueryParams} params - The request parameters.
+ * @param {SolQueryParams} params - The request parameters.
  * @returns {Promise<MarsPhotoResponse>}
  * @fulfill {MarsPhotoResponse} - The Mars rover photos.
  * @reject {Error} - The error object.
  */
-export const getMarsRoverPhotosByMartianSol = async (params: RoverQueryParams): Promise<MarsPhotoResponse> => {
+export const getMarsRoverPhotosByMartianSol = async (params: SolQueryParams): Promise<MarsPhotoResponse> => {
   const query = buildQueryParams(params);
   const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/curiosity/photos?${query}`);
   return response.data;
 }
 
-export const getMarsRoverPhotosByEarthDate = async () => {
-
+/**
+ * @function getMarsRoverPhotosByEarthDate
+ * @async
+ * @version 2.2.2
+ * @param {EarthDateQueryParams} params - The request parameters.
+ * @returns {Promise<MarsPhotoResponse>}
+ * @fulfill {MarsPhotoResponse} - The Mars rover photos.
+ * @reject {Error} - The error object.
+ */
+export const getMarsRoverPhotosByEarthDate = async (params: EarthDateQueryParams): Promise<MarsPhotoResponse> => {
+  const query = buildQueryParams(params);
+  const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/curiosity/photos?${query}`);
+  return response.data;
 }

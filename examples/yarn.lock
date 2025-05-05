@@ -125,6 +125,11 @@ dmd-bitbucket@^0.1.11:
   resolved "https://registry.yarnpkg.com/dmd-bitbucket/-/dmd-bitbucket-0.1.11.tgz#5c4d68d7671bf0da70fbccfa3336754ae37f3edf"
   integrity sha512-P5msHEcIC9Y2sXcDtY60dAuDhga4KmMtK7KPK3cglTLYxOQDSn1qJjERmgWpzlIeJcBtpDY1qG1pF+XACb1e0g==
 
+dmd-clear@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/dmd-clear/-/dmd-clear-0.1.2.tgz#f061c5b072b26ba23164dd5a8c0bc8668833be12"
+  integrity sha512-sALxfbQ9r8pT8rbWe5NFEGtb4oKeWVnu39YxCdB1b/HcDSLmbPxmYGXRU6EkgixCcIGodMcox0pq86+xYlT/6A==
+
 dunder-proto@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/dunder-proto/-/dunder-proto-1.0.1.tgz#d7ae667e1dc83482f8b70fd0f6eefc50da30f58a"
@@ -256,14 +261,15 @@ proxy-from-env@^1.1.0:
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
-rocketdata@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/rocketdata/-/rocketdata-2.1.2.tgz#1e40428210bece13644bb98f33a6a3056760338c"
-  integrity sha512-5fsg3Xyv6KLUSJ2hNJJuu1kGQnujZhHm+eleSy1vPJjwwR5d71TbH96zPmHkjxho7gACnIRyQQjMDfCgAKiDMw==
+rocketdata@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/rocketdata/-/rocketdata-2.2.2.tgz#5b2f83ee6f1bf8760127debd8bf1e3aafcb0b5b8"
+  integrity sha512-jHZk76qOFxM8xZ8i4/OARu/aHPJqQ7fmOCINd0IPBy2LKOww6Uds9K8MJL+iW7lleplkA8/iS1bN4dixPIGjLw==
   dependencies:
     "@godaddy/dmd" "^1.0.4"
     axios "^1.9.0"
     dmd-bitbucket "^0.1.11"
+    dmd-clear "^0.1.2"
     ts-node "^10.9.2"
 
 ts-node@^10.9.2:

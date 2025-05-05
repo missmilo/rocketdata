@@ -1,9 +1,36 @@
 import axios from 'axios';
-import { getAstronomyPictureOfTheDay, getMarsRoverPhotosByMartianSol, ApodResponse, MarsPhoto, RoverQueryParams } from '../index';
+import { 
+  getAstronomyPictureOfTheDay, 
+  getMarsRoverPhotosByMartianSol, 
+  getMarsRoverPhotosByEarthDate, 
+  ApodResponse, 
+  MarsPhoto, 
+  SolQueryParams, 
+  EarthDateQueryParams 
+} from '../index';
 
 
 jest.mock('axios');
 const mockAxios = axios as jest.Mocked<typeof axios>;
+
+const mockMarsPhoto: MarsPhoto = {
+  id: 1,
+  sol: 1000,
+  img_src: 'source',
+  earth_date: '2025-05-04',
+  camera: {
+    abbreviation: 'FHAZ',
+    fullName: 'Front Hazard Avoidance Camera',
+    supportedRovers: ['Curiosity', 'Opportunity', 'Spirit'],
+  },
+  rover: {
+    id: 1,
+    name: 'Curiosity',
+    landing_date: '2025-05-04',
+    launch_date: '2025-05-04',
+    status: 'active',
+  }
+}
 
 describe('getAstronomyPictureOfTheDay', () => {
 
@@ -48,33 +75,32 @@ describe('getAstronomyPictureOfTheDay', () => {
 });
 
 describe('getMarsRoverPhotosByMartianSol', () => {
-  const mockMarsPhoto: MarsPhoto = {
-    id: 1,
-    sol: 1000,
-    img_src: 'source',
-    earth_date: '2025-05-04',
-    camera: {
-      abbreviation: 'FHAZ',
-      fullName: 'Front Hazard Avoidance Camera',
-      supportedRovers: ['Curiosity', 'Opportunity', 'Spirit'],
-    },
-    rover: {
-      id: 1,
-      name: 'Curiosity',
-      landing_date: '2025-05-04',
-      launch_date: '2025-05-04',
-      status: 'active',
-    }
-  }
   const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&sol=1000&api_key=DEMO_KEY`;
   it('fetches Mars Rover photos successfully', async () => {
     mockAxios.get.mockResolvedValueOnce({ data: mockMarsPhoto });
-    const params: RoverQueryParams = {
+    const params: SolQueryParams = {
       camera: 'FHAZ',
       sol: 1000,
       api_key: 'DEMO_KEY',
     }
     const result = await getMarsRoverPhotosByMartianSol(params);
+    expect( mockAxios.get).toHaveBeenCalledWith(
+      expect.stringContaining(URL)
+    )
+    expect(result).toEqual(mockMarsPhoto);
+  });
+});
+
+describe('getMarsRoverPhotosByEarthDate', () => {
+  const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=2025-05-04&api_key=DEMO_KEY`;
+  it('fetches Mars Rover photos successfully', async () => {
+    mockAxios.get.mockResolvedValueOnce({ data: mockMarsPhoto });
+    const params: EarthDateQueryParams = {
+      camera: 'FHAZ',
+      earth_date: '2025-05-04',
+      api_key: 'DEMO_KEY',
+    }
+    const result = await getMarsRoverPhotosByEarthDate(params);
     expect( mockAxios.get).toHaveBeenCalledWith(
       expect.stringContaining(URL)
     )

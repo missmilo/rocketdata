@@ -5,6 +5,8 @@
 <dd><p>getAstronomyPictureOfTheDay is a function that returns the Astronomy Picture of the Day from NASA's API.</p></dd>
 <dt><a href="#getMarsRoverPhotosByMartianSol">getMarsRoverPhotosByMartianSol(params)</a> ⇒ <code><a href="#MarsPhotoResponse">Promise.&lt;MarsPhotoResponse&gt;</a></code></dt>
 <dd></dd>
+<dt><a href="#getMarsRoverPhotosByEarthDate">getMarsRoverPhotosByEarthDate(params)</a> ⇒ <code><a href="#MarsPhotoResponse">Promise.&lt;MarsPhotoResponse&gt;</a></code></dt>
+<dd></dd>
 </dl>
 
 ## Interfaces
@@ -16,8 +18,10 @@
 <dd><p>The request parameters for getAstronomyPictureOfTheDay.</p></dd>
 <dt><a href="#CameraInfo">CameraInfo</a></dt>
 <dd><p>CameraInfo is the format for a camera.</p></dd>
-<dt><a href="#RoverQueryParams">RoverQueryParams</a></dt>
-<dd><p>RoverQueryParams is the request parameters for querying by Martian sol.</p></dd>
+<dt><a href="#SolQueryParams">SolQueryParams</a></dt>
+<dd><p>Parameters to fetch Mars rover photos by sol (Martian day).</p></dd>
+<dt><a href="#EarthDateQueryParams">EarthDateQueryParams</a></dt>
+<dd><p>Parameters to fetch Mars rover photos by earth date.</p></dd>
 <dt><a href="#RoverInfo">RoverInfo</a></dt>
 <dd><p>RoverInfo is the format for a rover.</p></dd>
 <dt><a href="#MarsPhoto">MarsPhoto</a></dt>
@@ -52,11 +56,11 @@
 
 | Name | Type | Description |
 | --- | --- | --- |
-| [date] | <code>string</code> | <p>Optional date of the APOD.</p> |
-| [start_date] | <code>string</code> | <p>Optional start date of the APOD.</p> |
-| [end_date] | <code>string</code> | <p>Optional end date of the APOD.</p> |
-| [count] | <code>number</code> | <p>Optional number of APODs to return.</p> |
-| [thumbs] | <code>boolean</code> | <p>Optional whether to return thumbnails.</p> |
+| [date] | <code>string</code> | <p>Optional, date of the APOD.</p> |
+| [start_date] | <code>string</code> | <p>Optional, start date of the APOD.</p> |
+| [end_date] | <code>string</code> | <p>Optional, end date of the APOD.</p> |
+| [count] | <code>number</code> | <p>Optional, number of APODs to return.</p> |
+| [thumbs] | <code>boolean</code> | <p>Optional, whether to return thumbnails.</p> |
 | api_key | <code>string</code> | <p>The API key.</p> |
 
 <p>The request parameters for getAstronomyPictureOfTheDay.</p>
@@ -75,20 +79,35 @@
 
 <p>CameraInfo is the format for a camera.</p>
 
-<a name="RoverQueryParams"></a>
+<a name="SolQueryParams"></a>
 
-## RoverQueryParams
-**Version**: 2.1.2  
+## SolQueryParams
+**Version**: 2.2.2  
 **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| sol | <code>number</code> | <p>The mars day.</p> |
-| [camera] | <code>string</code> | <p>The camera of the rover. Optional, defaults to all.</p> |
-| [page] | <code>number</code> | <p>The page of the APOD. Optional, defaults to 1.</p> |
-| api_key | <code>string</code> | <p>The API key.</p> |
+| sol | <code>number</code> | <p>The Martian sol (e.g., 1000).</p> |
+| [camera] | <code>CameraAbbreviation</code> | <p>Abbreviation of the camera.</p> |
+| [page] | <code>number</code> | <p>Optional, defaults to 1. 25 items per page returned.</p> |
+| api_key | <code>string</code> | <p>NASA API key.</p> |
 
-<p>RoverQueryParams is the request parameters for querying by Martian sol.</p>
+<p>Parameters to fetch Mars rover photos by sol (Martian day).</p>
+
+<a name="EarthDateQueryParams"></a>
+
+## EarthDateQueryParams
+**Version**: 2.2.2  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| earth_date | <code>string</code> | <p>The earth date of the rover (e.g., '2023-06-25').</p> |
+| [camera] | <code>CameraAbbreviation</code> | <p>Abbreviation of the camera.</p> |
+| [page] | <code>number</code> | <p>Optional, defaults to 1. 25 items per page returned.</p> |
+| api_key | <code>string</code> | <p>NASA API key.</p> |
+
+<p>Parameters to fetch Mars rover photos by earth date.</p>
 
 <a name="RoverInfo"></a>
 
@@ -157,5 +176,16 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| params | [<code>RoverQueryParams</code>](#RoverQueryParams) | <p>The request parameters.</p> |
+| params | [<code>SolQueryParams</code>](#SolQueryParams) | <p>The request parameters.</p> |
+
+<a name="getMarsRoverPhotosByEarthDate"></a>
+
+## getMarsRoverPhotosByEarthDate(params)
+**Fulfill**: [<code>MarsPhotoResponse</code>](#MarsPhotoResponse) - The Mars rover photos.  
+**Reject**: <code>Error</code> - The error object.  
+**Version**: 2.2.2  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| params | [<code>EarthDateQueryParams</code>](#EarthDateQueryParams) | <p>The request parameters.</p> |
 
