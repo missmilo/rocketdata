@@ -6,7 +6,7 @@ import axios from 'axios';
  * @description The response object from the NASA API.
  * @property {string} date - The date of the APOD.
  * @property {string} explanation - The explanation of the APOD.
- * @property {string} hdurl - The HD URL of the APOD.
+ * @property {string} [hdurl] - The HD URL of the APOD. May not be available for all media types.
  * @property {string} media_type - The media type of the APOD.
  * @property {string} service_version - The service version of the APOD.
  * @property {string} title - The title of the APOD.
@@ -25,11 +25,11 @@ export type ApodResponse = {
 /**
  * @interface ApodRequestParams
  * @description The request parameters for getAstronomyPictureOfTheDay.
- * @property {string} date - The date of the APOD.
- * @property {string} start_date - The start date of the APOD.
- * @property {string} end_date - The end date of the APOD.
- * @property {number} count - The number of APODs to return.
- * @property {boolean} thumbs - Whether to return thumbnails.
+ * @property {string} [date] - Optional date of the APOD.
+ * @property {string} [start_date] - Optional start date of the APOD.
+ * @property {string} [end_date] - Optional end date of the APOD.
+ * @property {number} [count] - Optional number of APODs to return.
+ * @property {boolean} [thumbs] - Optional whether to return thumbnails.
  * @property {string} api_key - The API key.
  */
 export type ApodRequestParams = {
@@ -38,9 +38,17 @@ export type ApodRequestParams = {
   end_date?: string;
   count?: number;
   thumbs?: boolean;
-  api_key?: string;
+  api_key: string;
 };
 
+
+/**
+ * @interface CameraInfo
+ * @description CameraInfo is the format for a camera.
+ * @property {string} abbreviation - The abbreviation of the camera.
+ * @property {string} fullName - The full name of the camera.
+ * @property {Array<string>} supportedRovers - The rovers that support the camera.
+ */
 export interface CameraInfo {
   abbreviation: CameraAbbreviation;
   fullName: string;
@@ -78,17 +86,26 @@ export const CAMERAS: CameraInfo[] = [
  * @interface RoverQueryParams
  * @description RoverQueryParams is the request parameters for querying by Martian sol.
  * @property {number} sol - The mars day.
- * @property {string} camera - The camera of the rover.
- * @property {number} page - The page of the APOD.
+ * @property {string} [camera] - The camera of the rover. Optional, defaults to all.
+ * @property {number} [page] - The page of the APOD. Optional, defaults to 1.
  * @property {string} api_key - The API key.
  */
 export interface RoverQueryParams {
   sol: number;
-  camera?: CameraAbbreviation; // optional, defaults to all
-  page?: number; // optional, defaults to 1
-  api_key?: string; // optional, defaults to DEMO_KEY
+  camera?: CameraAbbreviation; 
+  page?: number; 
+  api_key: string; 
 }
 
+/**
+ * @interface RoverInfo
+ * @description RoverInfo is the format for a rover.
+ * @property {number} id - The id of the rover.
+ * @property {string} name - The name of the rover.
+ * @property {string} landing_date - The landing date of the rover.
+ * @property {string} launch_date - The launch date of the rover.
+ * @property {string} status - The status of the rover.
+ */
 export interface RoverInfo {
   id: number;
   name: 'Curiosity' | 'Opportunity' | 'Spirit';
@@ -145,7 +162,9 @@ function buildQueryParams(params: Record<string, any>): string {
  * @function getAstronomyPictureOfTheDay
  * @version 2.0.2
  * @param {ApodRequestParams} params - The request parameters.
- * @returns {ApodResponse} Returns the Astronomy Picture of the Day.
+ * @returns {Promise<ApodResponse>} 
+ * @fulfill {ApodResponse} - The astronomy picture of the day.
+ * @reject {Error} - The error object.
  * @description getAstronomyPictureOfTheDay is a function that returns the Astronomy Picture of the Day from NASA's API.
  */
 export const getAstronomyPictureOfTheDay = async (
@@ -164,7 +183,7 @@ export const getAstronomyPictureOfTheDay = async (
  * @async
  * @version 2.1.2
  * @param {RoverQueryParams} params - The request parameters.
- * @returns {Promise}
+ * @returns {Promise<MarsPhotoResponse>}
  * @fulfill {MarsPhotoResponse} - The Mars rover photos.
  * @reject {Error} - The error object.
  */
