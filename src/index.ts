@@ -87,7 +87,7 @@ export const CAMERAS: CameraInfo[] = [
 
 /**
  * @interface RoverQueryParams
- * @version 2.0.2
+ * @version 2.1.2
  * @description RoverQueryParams is the request parameters for querying by Martian sol.
  * @property {number} sol - The mars day.
  * @property {string} [camera] - The camera of the rover. Optional, defaults to all.
@@ -103,6 +103,7 @@ export interface RoverQueryParams {
 
 /**
  * @interface RoverInfo
+ * @version 2.1.2
  * @description RoverInfo is the format for a rover.
  * @property {number} id - The id of the rover.
  * @property {string} name - The name of the rover.
@@ -120,6 +121,7 @@ export interface RoverInfo {
 
 /**
  * @interface MarsPhoto
+ * @version 2.1.2
  * @description MarsPhoto is the format for a Mars rover photo.
  * @property {number} id - The id of the Mars rover photo.
  * @property {number} sol - The mars day.
@@ -139,6 +141,7 @@ export interface MarsPhoto {
 
 /**
  * @interface MarsPhotoResponse
+ * @version 2.1.2
  * @description MarsPhotoResponse is the response object for querying by Martian sol.
  * @property {Array<MarsPhoto>} photos - The list of Mars rover photos.
  */
