@@ -27,3 +27,7 @@ Or with yarn:
 ```bash
 yarn add rocketdata
 ```
+
+## ⚡ API 
+
+View the full API documentation [here](API.md).
