@@ -69,19 +69,20 @@ export type CameraAbbreviation =
   | 'NAVCAM'
   | 'PANCAM'
   | 'MINITES';
-export type Rover = 'Curiosity' | 'Opportunity' | 'Spirit';
+
+export type Rover = 'curiosity' | 'opportunity' | 'spirit';
 
 
 export const CAMERAS: CameraInfo[] = [
-  { abbreviation: 'FHAZ', fullName: 'Front Hazard Avoidance Camera', supportedRovers: ['Curiosity', 'Opportunity', 'Spirit'] },
-  { abbreviation: 'RHAZ', fullName: 'Rear Hazard Avoidance Camera', supportedRovers: ['Curiosity', 'Opportunity', 'Spirit'] },
-  { abbreviation: 'MAST', fullName: 'Mast Camera', supportedRovers: ['Curiosity'] },
-  { abbreviation: 'CHEMCAM', fullName: 'Chemistry and Camera Complex', supportedRovers: ['Curiosity'] },
-  { abbreviation: 'MAHLI', fullName: 'Mars Hand Lens Imager', supportedRovers: ['Curiosity'] },
-  { abbreviation: 'MARDI', fullName: 'Mars Descent Imager', supportedRovers: ['Curiosity'] },
-  { abbreviation: 'NAVCAM', fullName: 'Navigation Camera', supportedRovers: ['Curiosity', 'Opportunity', 'Spirit'] },
-  { abbreviation: 'PANCAM', fullName: 'Panoramic Camera', supportedRovers: ['Opportunity', 'Spirit'] },
-  { abbreviation: 'MINITES', fullName: 'Miniature Thermal Emission Spectrometer (Mini-TES)', supportedRovers: ['Opportunity', 'Spirit'] },
+  { abbreviation: 'FHAZ', fullName: 'Front Hazard Avoidance Camera', supportedRovers: ['curiosity', 'opportunity', 'spirit'] },
+  { abbreviation: 'RHAZ', fullName: 'Rear Hazard Avoidance Camera', supportedRovers: ['curiosity', 'opportunity', 'spirit'] },
+  { abbreviation: 'MAST', fullName: 'Mast Camera', supportedRovers: ['curiosity'] },
+  { abbreviation: 'CHEMCAM', fullName: 'Chemistry and Camera Complex', supportedRovers: ['curiosity'] },
+  { abbreviation: 'MAHLI', fullName: 'Mars Hand Lens Imager', supportedRovers: ['curiosity'] },
+  { abbreviation: 'MARDI', fullName: 'Mars Descent Imager', supportedRovers: ['curiosity'] },
+  { abbreviation: 'NAVCAM', fullName: 'Navigation Camera', supportedRovers: ['curiosity', 'opportunity', 'spirit'] },
+  { abbreviation: 'PANCAM', fullName: 'Panoramic Camera', supportedRovers: ['opportunity', 'spirit'] },
+  { abbreviation: 'MINITES', fullName: 'Miniature Thermal Emission Spectrometer (Mini-TES)', supportedRovers: ['opportunity', 'spirit'] },
 ];
 
 interface RoverQueryParams {
@@ -119,14 +120,14 @@ export type EarthDateQueryParams = Pick<RoverQueryParams, 'earth_date' | 'camera
  * @version 2.1.2
  * @description RoverInfo is the format for a rover.
  * @property {number} id - The id of the rover.
- * @property {string} name - The name of the rover.
+ * @property {Rover} name - The name of the rover.
  * @property {string} landing_date - The landing date of the rover.
  * @property {string} launch_date - The launch date of the rover.
  * @property {string} status - The status of the rover.
  */
 export interface RoverInfo {
   id: number;
-  name: 'Curiosity' | 'Opportunity' | 'Spirit';
+  name: Rover;
   landing_date: string; 
   launch_date: string;
   status: 'active' | 'complete';
@@ -162,9 +163,32 @@ export interface MarsPhotoResponse {
   photos: MarsPhoto[];
 }
 
+
+/**
+ * @interface RoverManifest
+ * @description The rover manifest object type returned from getMissionManifest.
+ * @version 2.3.2
+ * @property {string} name - The name of the rover. 
+ * @property {string} landing_date - The landing date of the rover.
+ * @property {string} launch_date - The launch date of the rover.
+ * @property {string} status - The status of the rover.
+ * @property {string} max_sol - The most recent Martian sol from which photos exist.
+ * @property {string} max_date - The most recent Earth date from which photos exist.
+ * @property {string} total_photos - The total number of photos taken by the rover.
+ */
+export interface RoverManifest {
+  name: string;
+  landing_date: string;
+  launch_date: string;
+  status: string;
+  max_sol: number;
+  max_date: string;
+  total_photos: number;
+}
+
 const NASA_API_URL = 'https://api.nasa.gov';
 const APOD_API = `${NASA_API_URL}/planetary/apod`;
-const MARS_ROVER_API = `${NASA_API_URL}/mars-photos/api/v1/rovers`;
+const MARS_ROVER_API = `${NASA_API_URL}/mars-photos/api/v1`;
 
 
 function buildQueryParams(params: Record<string, any>): string {
@@ -209,7 +233,7 @@ export const getAstronomyPictureOfTheDay = async (
  */
 export const getMarsRoverPhotosByMartianSol = async (params: SolQueryParams): Promise<MarsPhotoResponse> => {
   const query = buildQueryParams(params);
-  const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/curiosity/photos?${query}`);
+  const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/rovers/curiosity/photos?${query}`);
   return response.data;
 }
 
@@ -224,6 +248,23 @@ export const getMarsRoverPhotosByMartianSol = async (params: SolQueryParams): Pr
  */
 export const getMarsRoverPhotosByEarthDate = async (params: EarthDateQueryParams): Promise<MarsPhotoResponse> => {
   const query = buildQueryParams(params);
-  const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/curiosity/photos?${query}`);
+  const response = await axios.get<MarsPhotoResponse>(`${MARS_ROVER_API}/rovers/curiosity/photos?${query}`);
+  return response.data;
+}
+
+/**
+ * @function getMissionManifest
+ * @description A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API. 
+ * @async
+ * @version 2.3.2 
+ * @param {Rover} roverName - The name of the rover. Curiosity, Opportunity or Spirit.
+ * @returns {Promise<RoverManifest>}
+ * @fulfill {RoverManifest} - The rover manifest.
+ * @reject {Error} - The error object.
+*/
+export const getRoverMissionManifest = async (rover: Rover, api_key: string): Promise<RoverManifest> => {
+  const URL = `${MARS_ROVER_API}/manifests/${rover}?api_key=${api_key}`;
+  console.log('Logging URL: ' + URL);
+  const response = await axios.get<RoverManifest>(URL);
   return response.data;
 }

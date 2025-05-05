@@ -7,6 +7,8 @@
 <dd></dd>
 <dt><a href="#getMarsRoverPhotosByEarthDate">getMarsRoverPhotosByEarthDate(params)</a> ⇒ <code><a href="#MarsPhotoResponse">Promise.&lt;MarsPhotoResponse&gt;</a></code></dt>
 <dd></dd>
+<dt><a href="#getMissionManifest">getMissionManifest(roverName)</a> ⇒ <code><a href="#RoverManifest">Promise.&lt;RoverManifest&gt;</a></code></dt>
+<dd><p>A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API.</p></dd>
 </dl>
 
 ## Interfaces
@@ -28,6 +30,8 @@
 <dd><p>MarsPhoto is the format for a Mars rover photo.</p></dd>
 <dt><a href="#MarsPhotoResponse">MarsPhotoResponse</a></dt>
 <dd><p>MarsPhotoResponse is the response object for querying by Martian sol.</p></dd>
+<dt><a href="#RoverManifest">RoverManifest</a></dt>
+<dd><p>The rover manifest object type returned from getMissionManifest.</p></dd>
 </dl>
 
 <a name="ApodResponse"></a>
@@ -118,7 +122,7 @@
 | Name | Type | Description |
 | --- | --- | --- |
 | id | <code>number</code> | <p>The id of the rover.</p> |
-| name | <code>string</code> | <p>The name of the rover.</p> |
+| name | <code>Rover</code> | <p>The name of the rover.</p> |
 | landing_date | <code>string</code> | <p>The landing date of the rover.</p> |
 | launch_date | <code>string</code> | <p>The launch date of the rover.</p> |
 | status | <code>string</code> | <p>The status of the rover.</p> |
@@ -154,6 +158,24 @@
 
 <p>MarsPhotoResponse is the response object for querying by Martian sol.</p>
 
+<a name="RoverManifest"></a>
+
+## RoverManifest
+**Version**: 2.3.2  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | <p>The name of the rover.</p> |
+| landing_date | <code>string</code> | <p>The landing date of the rover.</p> |
+| launch_date | <code>string</code> | <p>The launch date of the rover.</p> |
+| status | <code>string</code> | <p>The status of the rover.</p> |
+| max_sol | <code>string</code> | <p>The most recent Martian sol from which photos exist.</p> |
+| max_date | <code>string</code> | <p>The most recent Earth date from which photos exist.</p> |
+| total_photos | <code>string</code> | <p>The total number of photos taken by the rover.</p> |
+
+<p>The rover manifest object type returned from getMissionManifest.</p>
+
 <a name="getAstronomyPictureOfTheDay"></a>
 
 ## getAstronomyPictureOfTheDay(params)
@@ -188,4 +210,17 @@
 | Param | Type | Description |
 | --- | --- | --- |
 | params | [<code>EarthDateQueryParams</code>](#EarthDateQueryParams) | <p>The request parameters.</p> |
+
+<a name="getMissionManifest"></a>
+
+## getMissionManifest(roverName)
+**Fulfill**: [<code>RoverManifest</code>](#RoverManifest) - The rover manifest.  
+**Reject**: <code>Error</code> - The error object.  
+**Version**: 2.3.2  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| roverName | <code>Rover</code> | <p>The name of the rover. Curiosity, Opportunity or Spirit.</p> |
+
+<p>A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API.</p>
 

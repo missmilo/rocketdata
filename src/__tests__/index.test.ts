@@ -6,7 +6,9 @@ import {
   ApodResponse, 
   MarsPhoto, 
   SolQueryParams, 
-  EarthDateQueryParams 
+  EarthDateQueryParams,
+  getRoverMissionManifest,
+  RoverManifest,
 } from '../index';
 
 
@@ -21,11 +23,11 @@ const mockMarsPhoto: MarsPhoto = {
   camera: {
     abbreviation: 'FHAZ',
     fullName: 'Front Hazard Avoidance Camera',
-    supportedRovers: ['Curiosity', 'Opportunity', 'Spirit'],
+    supportedRovers: ['curiosity', 'opportunity', 'spirit'],
   },
   rover: {
     id: 1,
-    name: 'Curiosity',
+    name: 'curiosity',
     landing_date: '2025-05-04',
     launch_date: '2025-05-04',
     status: 'active',
@@ -75,6 +77,11 @@ describe('getAstronomyPictureOfTheDay', () => {
 });
 
 describe('getMarsRoverPhotosByMartianSol', () => {
+  
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&sol=1000&api_key=DEMO_KEY`;
   it('fetches Mars Rover photos successfully', async () => {
     mockAxios.get.mockResolvedValueOnce({ data: mockMarsPhoto });
@@ -92,7 +99,13 @@ describe('getMarsRoverPhotosByMartianSol', () => {
 });
 
 describe('getMarsRoverPhotosByEarthDate', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   const URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=2025-05-04&api_key=DEMO_KEY`;
+  
   it('fetches Mars Rover photos successfully', async () => {
     mockAxios.get.mockResolvedValueOnce({ data: mockMarsPhoto });
     const params: EarthDateQueryParams = {
@@ -107,3 +120,31 @@ describe('getMarsRoverPhotosByEarthDate', () => {
     expect(result).toEqual(mockMarsPhoto);
   });
 });
+
+describe('getRoverMissionManifest', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  const URL = 'https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity?api_key=DEMO_KEY'
+
+  it('fetches Mars Rover mission manifest successfully', async () => {
+    const mockManifest: RoverManifest = {
+      name: 'Curiosity',
+      landing_date: '2025-05-04',
+      launch_date: '2025-05-04',
+      status: 'active',
+      max_sol: 1000,
+      max_date: '2025-05-04',
+      total_photos: 1000,
+    }
+    mockAxios.get.mockResolvedValueOnce({ data: mockManifest });
+    const result = await getRoverMissionManifest('curiosity', 'DEMO_KEY');
+    expect( mockAxios.get).toHaveBeenCalledWith(
+      expect.stringContaining(URL)
+    );
+    expect(result).toEqual(mockManifest);
+  })
+});
+
