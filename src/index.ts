@@ -210,6 +210,15 @@ function buildQueryParams(params: Record<string, any>): string {
  * @fulfill {ApodResponse} - The astronomy picture of the day.
  * @reject {Error} - The error object.
  * @description getAstronomyPictureOfTheDay is a function that returns the Astronomy Picture of the Day from NASA's API.
+ * @example
+ * const result = await getAstronomyPictureOfTheDay({
+ *   date: '2023-06-25',
+ *   start_date: '2023-06-20',
+ *   end_date: '2023-06-25',
+ *   count: 5,
+ *   thumbs: true,
+ *   api_key: 'DEMO_KEY',
+ * });
  */
 export const getAstronomyPictureOfTheDay = async (
   params: ApodRequestParams
@@ -231,6 +240,13 @@ export const getAstronomyPictureOfTheDay = async (
  * @returns {Promise<MarsPhotoResponse>}
  * @fulfill {MarsPhotoResponse} - The Mars rover photos.
  * @reject {Error} - The error object.
+ * @example
+ * const result = await getMarsRoverPhotosByMartianSol({
+ *   sol: 1000,
+ *   camera: 'FHAZ',
+ *   page: 1,
+ *   api_key: 'DEMO_KEY',
+ * });
  */
 export const getMarsRoverPhotosByMartianSol = async (params: SolQueryParams): Promise<MarsPhotoResponse> => {
   const query = buildQueryParams(params);
@@ -247,6 +263,13 @@ export const getMarsRoverPhotosByMartianSol = async (params: SolQueryParams): Pr
  * @returns {Promise<MarsPhotoResponse>}
  * @fulfill {MarsPhotoResponse} - The Mars rover photos.
  * @reject {Error} - The error object.
+ * @example
+ * const result = await getMarsRoverPhotosByEarthDate({
+ *   earth_date: '2023-06-25',
+ *   camera: 'FHAZ',
+ *   page: 1,
+ *   api_key: 'DEMO_KEY',
+ * });
  */
 export const getMarsRoverPhotosByEarthDate = async (params: EarthDateQueryParams): Promise<MarsPhotoResponse> => {
   const query = buildQueryParams(params);
@@ -263,6 +286,8 @@ export const getMarsRoverPhotosByEarthDate = async (params: EarthDateQueryParams
  * @returns {Promise<RoverManifest>}
  * @fulfill {RoverManifest} - The rover manifest.
  * @reject {Error} - The error object.
+ * @example
+ * const result = await getMissionManifest('curiosity', 'DEMO_KEY);
 */
 export const getRoverMissionManifest = async (rover: Rover, api_key: string): Promise<RoverManifest> => {
   const URL = `${MARS_ROVER_API}/manifests/${rover}?api_key=${api_key}`;

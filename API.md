@@ -189,6 +189,10 @@
 
 <p>getAstronomyPictureOfTheDay is a function that returns the Astronomy Picture of the Day from NASA's API.</p>
 
+**Example**  
+```js
+const result = await getAstronomyPictureOfTheDay({  date: '2023-06-25',  start_date: '2023-06-20',  end_date: '2023-06-25',  count: 5,  thumbs: true,  api_key: 'DEMO_KEY',});
+```
 <a name="getMarsRoverPhotosByMartianSol"></a>
 
 ## getMarsRoverPhotosByMartianSol(params)
@@ -202,6 +206,10 @@
 
 <p>Get Mars rover photos by Martian sol.</p>
 
+**Example**  
+```js
+const result = await getMarsRoverPhotosByMartianSol({  sol: 1000,  camera: 'FHAZ',  page: 1,  api_key: 'DEMO_KEY',});
+```
 <a name="getMarsRoverPhotosByEarthDate"></a>
 
 ## getMarsRoverPhotosByEarthDate(params)
@@ -215,6 +223,10 @@
 
 <p>Get Mars rover photos by earth date.</p>
 
+**Example**  
+```js
+const result = await getMarsRoverPhotosByEarthDate({  earth_date: '2023-06-25',  camera: 'FHAZ',  page: 1,  api_key: 'DEMO_KEY',});
+```
 <a name="getMissionManifest"></a>
 
 ## getMissionManifest(roverName)
@@ -228,3 +240,7 @@
 
 <p>A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API.</p>
 
+**Example**  
+```js
+const result = await getMissionManifest('curiosity', 'DEMO_KEY);
+```
