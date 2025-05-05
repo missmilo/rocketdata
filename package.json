@@ -6,6 +6,7 @@
   "files": [
     "dist/"
   ],
+  "keywords": ["nasa", "api", "mars", "apod", "space", "node-wrapper"],
   "repository": "https://github.com/missmilo/rocketdata.git",
   "author": "Maddie <tmaddy53@gmail.com>",
   "license": "MIT",
