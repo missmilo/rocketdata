@@ -1,0 +1,22 @@
+{
+  "name": "rocketdata",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/missmilo/rocketdata.git",
+  "author": "Maddie <tmaddy53@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
+  }
+}
