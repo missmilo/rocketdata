@@ -29,6 +29,7 @@
 <a name="ApodResponse"></a>
 
 ## ApodResponse
+**Version**: 2.0.2  
 **Properties**
 
 | Name | Type | Description |
@@ -46,6 +47,7 @@
 <a name="ApodRequestParams"></a>
 
 ## ApodRequestParams
+**Version**: 2.0.2  
 **Properties**
 
 | Name | Type | Description |
@@ -62,6 +64,7 @@
 <a name="CameraInfo"></a>
 
 ## CameraInfo
+**Version**: 2.1.2  
 **Properties**
 
 | Name | Type | Description |
@@ -75,6 +78,7 @@
 <a name="RoverQueryParams"></a>
 
 ## RoverQueryParams
+**Version**: 2.0.2  
 **Properties**
 
 | Name | Type | Description |

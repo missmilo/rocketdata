@@ -3,6 +3,7 @@ import axios from 'axios';
 
 /**
  * @interface ApodResponse
+ * @version 2.0.2
  * @description The response object from the NASA API.
  * @property {string} date - The date of the APOD.
  * @property {string} explanation - The explanation of the APOD.
@@ -24,6 +25,7 @@ export type ApodResponse = {
 
 /**
  * @interface ApodRequestParams
+ * @version 2.0.2
  * @description The request parameters for getAstronomyPictureOfTheDay.
  * @property {string} [date] - Optional date of the APOD.
  * @property {string} [start_date] - Optional start date of the APOD.
@@ -44,6 +46,7 @@ export type ApodRequestParams = {
 
 /**
  * @interface CameraInfo
+ * @version 2.1.2
  * @description CameraInfo is the format for a camera.
  * @property {string} abbreviation - The abbreviation of the camera.
  * @property {string} fullName - The full name of the camera.
@@ -84,6 +87,7 @@ export const CAMERAS: CameraInfo[] = [
 
 /**
  * @interface RoverQueryParams
+ * @version 2.0.2
  * @description RoverQueryParams is the request parameters for querying by Martian sol.
  * @property {number} sol - The mars day.
  * @property {string} [camera] - The camera of the rover. Optional, defaults to all.
