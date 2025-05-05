@@ -1,0 +1,16 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Maddie",
+  "license": "MIT",
+  "dependencies": {
+    "rocketdata": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "ts-node": "^10.9.2",
+    "tslib": "2.5.0",
+    "typescript": "^5.8.3"
+  }
+}
