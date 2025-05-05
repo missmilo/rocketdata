@@ -3,7 +3,6 @@ import { buildQueryParams } from './util';
 
 /**
  * @interface ApodResponse
- * @alias module:rocketdata
  * @version 2.0.2
  * @description The response object from the NASA API.
  * @property {string} date - The date of the APOD.
