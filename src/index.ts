@@ -224,6 +224,7 @@ export const getAstronomyPictureOfTheDay = async (
 
 /**
  * @function getMarsRoverPhotosByMartianSol
+ * @description Get Mars rover photos by Martian sol.
  * @async
  * @version 2.1.2
  * @param {SolQueryParams} params - The request parameters.
@@ -239,6 +240,7 @@ export const getMarsRoverPhotosByMartianSol = async (params: SolQueryParams): Pr
 
 /**
  * @function getMarsRoverPhotosByEarthDate
+ * @description Get Mars rover photos by earth date.
  * @async
  * @version 2.2.2
  * @param {EarthDateQueryParams} params - The request parameters.
