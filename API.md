@@ -7,7 +7,7 @@
 <dd><p>Get Mars rover photos by Martian sol.</p></dd>
 <dt><a href="#getMarsRoverPhotosByEarthDate">getMarsRoverPhotosByEarthDate(params)</a> ⇒ <code><a href="#MarsPhotoResponse">Promise.&lt;MarsPhotoResponse&gt;</a></code></dt>
 <dd><p>Get Mars rover photos by earth date.</p></dd>
-<dt><a href="#getMissionManifest">getMissionManifest(roverName)</a> ⇒ <code><a href="#RoverManifest">Promise.&lt;RoverManifest&gt;</a></code></dt>
+<dt><a href="#getMissionManifest">getMissionManifest(rover)</a> ⇒ <code><a href="#RoverManifest">Promise.&lt;RoverManifest&gt;</a></code></dt>
 <dd><p>A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API.</p></dd>
 </dl>
 
@@ -229,14 +229,14 @@ const result = await getMarsRoverPhotosByEarthDate({  earth_date: '2023-06-25',
 ```
 <a name="getMissionManifest"></a>
 
-## getMissionManifest(roverName)
+## getMissionManifest(rover)
 **Fulfill**: [<code>RoverManifest</code>](#RoverManifest) - The rover manifest.  
 **Reject**: <code>Error</code> - The error object.  
 **Version**: 2.3.2  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| roverName | <code>Rover</code> | <p>The name of the rover. Curiosity, Opportunity or Spirit.</p> |
+| rover | <code>Rover</code> | <p>The name of the rover. Curiosity, Opportunity or Spirit.</p> |
 
 <p>A mission manifest is available for each Rover. This manifest will list details of the Rover's mission to help narrow down photo queries to the API.</p>
 
