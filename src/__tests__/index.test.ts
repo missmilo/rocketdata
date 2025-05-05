@@ -16,7 +16,7 @@ describe('getAstronomyPictureOfTheDay', () => {
   };
 
   it('fetches a single APOD successfully', async () => {
-    mockAxios.get.mockResolvedValueOnce({ data: mockSingleApod });
+    mockAxios.get.mockResolvedValue({ data: mockSingleApod });
     const result = await getAstronomyPictureOfTheDay({ date: '2025-05-04', api_key: 'TEST_KEY' });
     expect( mockAxios.get).toHaveBeenCalledWith(
       expect.stringContaining('https://api.nasa.gov/planetary/apod?'),
@@ -26,14 +26,14 @@ describe('getAstronomyPictureOfTheDay', () => {
 
   it('fetches multiple APODs when count is provided', async () => {
     const mockArray = [mockSingleApod, { ...mockSingleApod, date: '2025-05-03' }];
-    mockAxios.get.mockResolvedValueOnce({ data: mockArray });
+    mockAxios.get.mockResolvedValue({ data: mockArray });
     const result = await getAstronomyPictureOfTheDay({ count: 2, api_key: 'TEST_KEY' });
     expect(Array.isArray(result)).toBe(true);
     expect((result as ApodResponse[]).length).toBe(2);
   });
 
   it('handles API failure gracefully', async () => {
-    mockAxios.get.mockRejectedValueOnce(new Error('API failure'));
+    mockAxios.get.mockRejectedValue(new Error('API failure'));
     await expect(
       getAstronomyPictureOfTheDay({ date: '2025-05-04', api_key: 'TEST_KEY' }),
     ).rejects.toThrow('API failure');

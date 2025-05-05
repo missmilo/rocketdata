@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist/"
   ],
   "repository": "https://github.com/missmilo/rocketdata.git",
   "author": "Maddie <tmaddy53@gmail.com>",

@@ -102,7 +102,6 @@ function buildQueryParams(params: Record<string, any>): string {
   return query.toString();
 }
 
-
 /**
  * 
  * @param params ApodRequestParams
@@ -119,6 +118,6 @@ export const getAstronomyPictureOfTheDay = async (
   return response.data;
 };
 
-export const getMarsRoverPhotos = async (params: RoverQueryParams) => {
-
+export const getMarsRoverPhotos = async () => {
+  
 }
