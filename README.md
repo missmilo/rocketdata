@@ -1,6 +1,7 @@
 # 🚀 Rocketdata
 
-**Rocketdata** is a modern, lightweight Node.js wrapper for NASA's public APIs. Easily fetch data from the Astronomy Picture of the Day (APOD), Mars Rover imagery, and more — all with clean, promise-based functions.
+**Rocketdata** is a modern, lightweight Node.js wrapper for [NASA's public APIs](). 
+Easily fetch data from the Astronomy Picture of the Day (APOD), Mars Rover imagery, and more — all with clean, promise-based functions.
 
 ---
 
